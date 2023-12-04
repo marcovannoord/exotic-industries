@@ -3,7 +3,6 @@ name: Release Factorio Mod
 jobs:
   release-github:
     runs-on: ubuntu-latest
-    if: startsWith(github.ref, 'refs/tags/')
     steps:
       - uses: actions/checkout@main
       - name: Create Factorio mod package
