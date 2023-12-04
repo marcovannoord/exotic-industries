@@ -8,15 +8,21 @@ jobs:
       - name: Create Factorio mod package
         id: package
         uses: klaborda/factorio-mod-create-package@main
-      - name: Create GitHub release
-        uses: Roang-zero1/github-create-release-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          UPDATE_EXISTING: "true"
-          VERSION_REGEX: ^[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+
-      - name: Upload GitHub artifacts
-        uses: Roang-zero1/github-upload-release-artifacts-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Store built firmware-packages
+        uses: actions/upload-artifact@v3
         with:
-          args: dist/
+          name: exoticind
+          path: |
+            ${{ github.workspace }}/dist
+      # - name: Create GitHub release
+      #   uses: Roang-zero1/github-create-release-action@master
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     UPDATE_EXISTING: "true"
+      #     VERSION_REGEX: ^[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+
+      # - name: Upload GitHub artifacts
+      #   uses: Roang-zero1/github-upload-release-artifacts-action@master
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     args: dist/
